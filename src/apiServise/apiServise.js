@@ -15,10 +15,9 @@ axios.defaults.headers.common["Authorization"] =
 export const fetchTrendingMovies = async () => {
   try {
     const response = await axios.get("trending/movie/day");
-    return response.data.results;
+    return response;
   } catch (error) {
-    console.error("Error fetching trending movies:", error);
-    throw error;
+    alert("Error fetching trending movies:", error);
   }
 };
 
