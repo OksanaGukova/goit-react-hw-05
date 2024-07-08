@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../apiServise/apiServise";
-import MovieCast from '../../components/MovieCast/MovieCast'
-import MovieReviews from '../../components/MovieReviews/MovieReviews'
+
 
 export default function MovieDatailsPage() {
 const BackLink = ({ to, children }) => {
@@ -42,9 +41,7 @@ const BackLink = ({ to, children }) => {
 
    return (
      <div>
-       <BackLink
-         to={locationRef.current.state?.from ?? "/movies"}
-       >
+       <BackLink to={locationRef.current.state?.from ?? "/movies"}>
          Go back
        </BackLink>
        <div>
@@ -54,24 +51,17 @@ const BackLink = ({ to, children }) => {
              alt={selectedMovie.title}
            />
          </div>
-         <div >
-           <h2 >{selectedMovie.title}</h2>
-           <p >{selectedMovie.overview}</p>
+         <div>
+           <h2>{selectedMovie.title}</h2>
+           <p>{selectedMovie.overview}</p>
          </div>
        </div>
        <div>
          <nav>
-           <NavLink to="cast">
-             Cast
-           </NavLink>
-           <NavLink to="reviews">
-             Reviews
-           </NavLink>
+           <NavLink to="cast">Cast</NavLink>
+           <NavLink to="reviews">Reviews</NavLink>
          </nav>
-         <Routes>
-           <Route path="cast" element={<MovieCast />} />
-           <Route path="reviews" element={<MovieReviews />} />
-         </Routes>
+         <Outlet />
        </div>
      </div>
    );
