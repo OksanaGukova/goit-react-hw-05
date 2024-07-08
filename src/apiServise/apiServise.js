@@ -33,18 +33,15 @@ export const fetchTrendingMovies = async () => {
 
 export const fetchMovieByQuery = async (query, page) => {
   try {
-    const response = await axios.get("search/movie", {
+    const response = await axios.get("/search/movie", {
       params: {
-        ...options.params,
-        query: query,
-        page: page,
+        query,
+        page,
       },
-      headers: options.headers,
     });
-    return response.data.results;
+    return response;
   } catch (error) {
-    console.error(`Error fetching movie by query (${query}):`, error);
-    throw error;
+    alert("Error fetching movies");
   }
 };
 
