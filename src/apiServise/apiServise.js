@@ -13,11 +13,11 @@ axios.defaults.headers.common["Authorization"] =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NGUzMjNiYWJlNzljZDEwOTczNjgyOWUyZWM5NWNmZSIsIm5iZiI6MTcyMDM2ODE2NC45OTkyMzQsInN1YiI6IjY2OGFiYWMxMzA1NGRkYTQwZWZmMjNkZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nIE3ptkcItLYwrplkmH3g1E_VZCW1xKdKwEVXmNFuws"
   
 export const fetchTrendingMovies = async () => {
-  try {
-    const response = await axios.get("trending/movie/day");
-    return response;
+   try {
+    const { data } = await axios.get("/trending/movie/day");
+    return data.results;
   } catch (error) {
-    alert("Error fetching trending movies:", error);
+    alert("Error fetching movies");
   }
 };
 
