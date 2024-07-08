@@ -4,18 +4,11 @@ import { fetchMovieDetails } from "../../apiServise/apiServise";
 
 
 export default function MovieDatailsPage() {
-const BackLink = ({ to, children }) => {
-  return (
-    <Link to={to} >
-      {children}
-    </Link>
-  );
-};
 
    const { movieId } = useParams();
    const location = useLocation();
-   const locationRef = useRef(location);
-
+  
+ const backLink = location.state?.from ?? "/movies";
    const [selectedMovie, setSelectedMovie] = useState(
      location.state?.movie ?? ""
    );
@@ -41,9 +34,7 @@ const BackLink = ({ to, children }) => {
 
    return (
      <div>
-       <BackLink to={locationRef.current.state?.from ?? "/movies"}>
-         Go back
-       </BackLink>
+       <Link to={backLink}>Go back</Link>
        <div>
          <div>
            <img

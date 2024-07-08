@@ -17,31 +17,36 @@ export default function MoviesPage() {
 
   const searchQuery = params.get("search");
 
-   useEffect(() => {
-     if (searchQuery) {
-       setQuery(searchQuery); 
-     }
+  useEffect(() => {
+    if (searchQuery) {
+      setQuery(searchQuery);
+    }
 
-     const getMovies = async () => {
-       setIsLoading(true);
-       setError(false);
+    if (!searchQuery) {
+      return;
+    }
 
-       try {
-         const { data } = await fetchMovieByQuery(searchQuery, page);
-         setSearchedMovies((prev) =>
-           page === 1 ? data.results : [...prev, ...data.results]
-         );
-         setIsVisible(data.results.length > 0);
-         setStatus(data.results.length > 0 ? "success" : "rejected");
-       } catch (error) {
-         setError(true);
-       } finally {
-         setIsLoading(false);
-       }
-     };
+    const getMovies = async () => {
+      setIsLoading(true);
+      setError(false);
 
-     getMovies();
-   }, [searchQuery, page]);
+      try {
+        const data = await fetchMovieByQuery(searchQuery, page);
+        console.log("Fetched data:", data); // Додано логування
+        setSearchedMovies((prev) =>
+          page === 1 ? data.results : [...prev, ...data.results]
+        );
+        setIsVisible(data.results.length > 0);
+        setStatus(data.results.length > 0 ? "success" : "rejected");
+      } catch (error) {
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getMovies();
+  }, [searchQuery, page]);
 
   const handleLoadMore = () => {
     setPage((prev) => prev + 1);

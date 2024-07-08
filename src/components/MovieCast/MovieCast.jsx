@@ -6,6 +6,8 @@ export default function MovieCast() {
      const { movieId } = useParams();
      const [cast, setCast] = useState([]);
     const location = useLocation();
+      const defaultImg =
+        "<https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster>";
     
     const BackLink = ({ to, children }) => {
       return <Link to={to}>{children}</Link>;
@@ -24,7 +26,7 @@ export default function MovieCast() {
      }, [movieId]);
 
      return (
-       <div >
+       <div>
          <BackLink to={location.state?.from ?? `/movies/${movieId}`}>
            Go back
          </BackLink>
@@ -34,15 +36,16 @@ export default function MovieCast() {
          ) : (
            <ul>
              {cast.map((actor) => (
-               <li key={actor.id} >
+               <li key={actor.id}>
                  <img
                    src={
-                     actor.profile_path `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                      
+                     actor.profile_path
+                       ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                       : defaultImg
                    }
                    alt={actor.name}
                  />
-                 <div >
+                 <div>
                    <h3>{actor.name}</h3>
                    <p>Character: {actor.character}</p>
                  </div>
