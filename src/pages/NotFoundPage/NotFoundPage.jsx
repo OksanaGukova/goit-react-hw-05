@@ -1,9 +1,27 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NotFound() {
+  const [timeLeft, setTimeLeft] = useState(10);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      navigate("/");
+      return;
+    }
+
+    const timerId = setTimeout(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+
+    return () => clearTimeout(timerId);
+  }, [timeLeft, navigate]);
+
   return (
     <div>
-      Not Found page
+      <p>Sorry, this page does not exist</p>
+      <p>Redirecting to Home page in {timeLeft} seconds...</p>
       <Link to="/">Home page</Link>
     </div>
   );

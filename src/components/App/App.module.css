@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    gap: 12px;
+    background-color:aquamarine;
+}
+
+.home {
+margin-left: 12px;
+}
+
+.home:hover {
+    color: black
+}
+
+.movies:hover {
+    color: black
+}
+
+body {
+    background-color: azure;
+}
