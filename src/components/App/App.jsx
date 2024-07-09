@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import MovieCast from "../MovieCast/MovieCast";
 import MovieReviews from '../MovieReviews/MovieReviews'
 
@@ -19,15 +19,17 @@ function App() {
            <Link to="/">Home</Link>
            <Link to="/movies">Movies</Link>
          </nav>
-         <Routes>
-           <Route path="/" element={<HomePage />} />
-           <Route path="/movies" element={<MoviesPage />} />
-           <Route path="/movies/:movieId/*" element={<MovieDetailsPage />}>
+         <Suspense fallback={<div>Loading page...</div>}>
+           <Routes>
+             <Route path="/" element={<HomePage />} />
+             <Route path="/movies" element={<MoviesPage />} />
+             <Route path="/movies/:movieId/*" element={<MovieDetailsPage />}>
                <Route path="cast" element={<MovieCast />} />
                <Route path="reviews" element={<MovieReviews />} />
-           </Route>
-           <Route path="*" element={<NotFoundPage />} />
-         </Routes>
+             </Route>
+             <Route path="*" element={<NotFoundPage />} />
+           </Routes>
+         </Suspense>
        </div>
      );
 }
