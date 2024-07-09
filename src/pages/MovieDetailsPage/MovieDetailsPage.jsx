@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../apiServise/apiServise";
-
+import css from './MovieDatailsPage.module.css'
 
 export default function MovieDatailsPage() {
 
@@ -34,8 +34,10 @@ export default function MovieDatailsPage() {
 
    return (
      <div>
-       <Link to={backLink}>Go back</Link>
-       <div>
+       <Link className={css.link} to={backLink}>
+         Go back
+       </Link>
+       <div className={css.link}>
          <div>
            <img
              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
@@ -45,6 +47,8 @@ export default function MovieDatailsPage() {
          <div>
            <h2>{selectedMovie.title}</h2>
            <p>{selectedMovie.overview}</p>
+           <p>Release date - {selectedMovie.release_date}</p>
+           <p>Popularity - {selectedMovie.popularity}</p>
          </div>
        </div>
        <div>
