@@ -15,7 +15,6 @@ export default function MovieList({ movies, state }) {
                 alt={movie.title}
               />
               </div>
-             
               <div className={css.textContainer}>
                 <h2 className={css.title}>{movie.title}</h2>
                 <p className={css.text}>{movie.release_date}</p>

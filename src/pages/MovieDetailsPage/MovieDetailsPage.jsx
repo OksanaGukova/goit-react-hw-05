@@ -40,6 +40,7 @@ export default function MovieDatailsPage() {
        <div className={css.link}>
          <div>
            <img
+             className={css.img}
              src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
              alt={selectedMovie.title}
            />
@@ -51,10 +52,10 @@ export default function MovieDatailsPage() {
            <p>Popularity - {selectedMovie.popularity}</p>
          </div>
        </div>
-       <div>
+       <div className={css.txtContainer}>
          <nav>
-           <NavLink to="cast">Cast</NavLink>
-           <NavLink to="reviews">Reviews</NavLink>
+           <NavLink className={css.cast} to="cast">Cast</NavLink>
+           <NavLink className={css.reviews} to="reviews">Reviews</NavLink>
          </nav>
          <Outlet />
        </div>

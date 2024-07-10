@@ -3,3 +3,26 @@
     display: flex;
     gap: 30px;
 }
+
+.img {
+    width: 450px;
+    height: 600px;
+    object-fit: cover;
+}
+
+.txtContainer {
+    margin-top: 12px;
+   
+}
+
+.cast {
+    margin-right: 12px;
+}
+
+.cast:hover {
+    color: black
+}
+
+.reviews:hover {
+    color: black
+}
