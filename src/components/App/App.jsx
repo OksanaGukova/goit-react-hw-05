@@ -1,7 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import MovieCast from "../MovieCast/MovieCast";
-import MovieReviews from '../MovieReviews/MovieReviews'
 import css from './App.module.css'
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
@@ -12,6 +10,8 @@ const MovieDetailsPage = lazy(() =>
 const NotFoundPage = lazy(() =>
   import("../../pages/NotFoundPage/NotFoundPage")
 );
+const MovieCast = lazy(() => import("../MovieCast/MovieCast"));
+const MovieReviews = lazy(() => import("../MovieReviews/MovieReviews"));
 
 function App() {
      return (

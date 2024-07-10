@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import css from './MovieList.module.css'
 
+ const defaultImg =
+   "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
+    
+
 export default function MovieList({ movies, state }) {
   return (
     <>
@@ -11,7 +15,7 @@ export default function MovieList({ movies, state }) {
               <div className={css.imgContainer}>
                  <img
                 className={css.imgtItem}
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`: defaultImg}
                 alt={movie.title}
               />
               </div>

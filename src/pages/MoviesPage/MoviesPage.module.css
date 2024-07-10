@@ -1,0 +1,30 @@
+.header {
+    text-align: center;
+}
+
+.form {
+    text-align: center;
+}
+
+.input {
+    width: 250px;
+    height: 20px;
+    margin-right: 12px;
+}
+
+.button {
+    background-color: aquamarine;
+    border: none;
+}
+
+.btnContainer {
+     display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadMoreBtn {
+    background-color: aquamarine;
+    border: none;
+    margin: 0 auto;
+}

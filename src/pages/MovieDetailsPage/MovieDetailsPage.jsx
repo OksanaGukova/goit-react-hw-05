@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../apiServise/apiServise";
-import css from './MovieDatailsPage.module.css'
+import css from './MovieDetailsPage.module.css'
 
 export default function MovieDatailsPage() {
 
    const { movieId } = useParams();
    const location = useLocation();
-  
+   const defaultImg =
+     "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
  const backLink = location.state?.from ?? "/movies";
    const [selectedMovie, setSelectedMovie] = useState(
      location.state?.movie ?? ""
@@ -41,7 +42,11 @@ export default function MovieDatailsPage() {
          <div>
            <img
              className={css.img}
-             src={`https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`}
+             src={
+               selectedMovie.poster_path
+                 ? `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
+                 : defaultImg
+             }
              alt={selectedMovie.title}
            />
          </div>
@@ -54,8 +59,12 @@ export default function MovieDatailsPage() {
        </div>
        <div className={css.txtContainer}>
          <nav>
-           <NavLink className={css.cast} to="cast">Cast</NavLink>
-           <NavLink className={css.reviews} to="reviews">Reviews</NavLink>
+           <NavLink className={css.cast} to="cast">
+             Cast
+           </NavLink>
+           <NavLink className={css.reviews} to="reviews">
+             Reviews
+           </NavLink>
          </nav>
          <Outlet />
        </div>

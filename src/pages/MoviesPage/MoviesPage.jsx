@@ -2,6 +2,7 @@ import { startTransition, useEffect, useState } from "react";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { fetchMovieByQuery } from "../../apiServise/apiServise";
 import MovieList from "../../components/MovieList/MovieList";
+import css from './MoviesPage.module.css'
 
 export default function MoviesPage() {
   const [query, setQuery] = useState("");
@@ -68,21 +69,23 @@ export default function MoviesPage() {
   };
 
   const LoadMoreBtn = ({ onClick }) => {
-    return <button onClick={onClick}>Load more</button>;
+    return <div className={css.btnContainer}>
+       <button className={css.loadMoreBtn} onClick={onClick}>Load more</button>
+    </div>
   };
 
   return (
     <>
-      <h1>Movies Search</h1>
-      <form onSubmit={handleSubmit}>
-        <input
+      <h1 className={css.header}>Movies Search</h1>
+      <form className={css.form} onSubmit={handleSubmit}>
+        <input className={css.input}
           type="text"
           autoComplete="off"
           autoFocus
           value={query}
           onChange={handleOnChange}
         />
-        <button type="submit">Search</button>
+        <button className={css.button} type="submit">Search</button>
       </form>
 
       {isLoading && <p>Loading..</p>}

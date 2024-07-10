@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMovieReviews } from "../../apiServise/apiServise";
 import css from './MovieReviews.module.css'
@@ -6,11 +6,12 @@ import css from './MovieReviews.module.css'
 export default function Reviews() {
   const [reviewsList, setReviewsList] = useState([]);
   const { movieId } = useParams();
+  const location = useLocation();
 
    const BackLink = ({ to, children }) => {
      return <Link to={to}>{children}</Link>;
-   };
-
+  };
+  
   useEffect(() => {
     const fetchReview = async () => {
       try {
@@ -20,18 +21,17 @@ export default function Reviews() {
         console.error(error);
       }
     };
-
     fetchReview();
   }, [movieId]);
 
   return (
     <div>
-      <div className={css.goBack}>
+      <div>
         <BackLink to={location.state?.from ?? `/movies/${movieId}`}>
           Go back
         </BackLink>
       </div>
-      <ul>
+      <ul className={css.list}>
         {reviewsList.length > 0
           ? reviewsList.map(({ author, content, id }) => (
               <li key={id}>
