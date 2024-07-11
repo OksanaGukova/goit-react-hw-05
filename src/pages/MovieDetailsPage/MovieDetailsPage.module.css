@@ -10,13 +10,15 @@
     object-fit: cover;
 }
 
+
 .txtContainer {
     margin-top: 12px;
-   
+  
 }
 
 .cast {
-    margin-right: 12px;
+    margin-right: 12px; 
+ 
 }
 
 .cast:hover {
