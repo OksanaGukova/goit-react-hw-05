@@ -39,14 +39,15 @@ export const fetchMovieByQuery = async (query, page) => {
 export const fetchMovieDetails = async (movieId) => {
   try {
     const response = await axios.get(`movie/${movieId}/credits`);
-    return response.data.cast; 
+    return response; 
   } catch (error) {
     console.error(`Error fetching movie details ${movieId}`);
     throw error;
   }
 };
 
-export const fetchMovieCredits = async (movieId) => {
+
+export const fetchMovieCast = async (movieId) => {
   try {
     const response = await axios.get(`movie/${movieId}/credits`);
     return response.data.cast;

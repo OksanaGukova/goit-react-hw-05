@@ -1,5 +1,5 @@
 import { Link, useLocation, useParams } from "react-router-dom";
-import { fetchMovieDetails } from "../../apiServise/apiServise";
+import { fetchMovieCast } from "../../apiServise/apiServise";
 import { useEffect, useState } from "react";
 import css from './MovieCast.module.css'
 
@@ -20,7 +20,7 @@ export default function MovieCast() {
      useEffect(() => {
        async function fetchCast() {
          try {
-           const data = await fetchMovieDetails(movieId);
+           const data = await fetchMovieCast(movieId);
            setCast(data);
          } catch (error) {
            console.log(error);

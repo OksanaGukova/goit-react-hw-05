@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMovieDetails } from "../../apiServise/apiServise";
 import css from './MovieDetailsPage.module.css'
@@ -9,7 +9,7 @@ export default function MovieDatailsPage() {
    const location = useLocation();
    const defaultImg =
      "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
- const backLink = location.state?.from ?? "/movies";
+  const backLink = useRef(location.state?.from ?? "/movies");
    const [selectedMovie, setSelectedMovie] = useState(
      location.state?.movie ?? ""
    );
@@ -29,15 +29,10 @@ export default function MovieDatailsPage() {
      }
    }, [movieId, selectedMovie]);
 
-   if (!selectedMovie) {
-     return <div >Loading...</div>;
-   }
 
    return (
      <div>
-       <Link to={backLink}>
-         Go back
-       </Link>
+       <Link to={backLink.current}>Go back</Link>
        <div className={css.link}>
          <div>
            <img
